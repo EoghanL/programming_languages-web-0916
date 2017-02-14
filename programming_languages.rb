@@ -1,3 +1,6 @@
+require 'pry'
 def reformat_languages(languages)
-  # your code here
+
+  languages.keys.each { |key| langs[key].each {|sub_hsh| sub_hsh.last[:style] = key }}
+
 end
