@@ -1,6 +1,15 @@
-require 'pry'
+require 'pry-byebug'
 def reformat_languages(languages)
-
-  languages.keys.each { |key| langs[key].each {|sub_hsh| sub_hsh.last[:style] = key }}
-
+  languages.each_with_object({}) do |(key,value), hsh|
+    languages[key].keys.each do |lang|
+      if !hsh[lang]
+        hsh[lang] = {
+          :type => languages[key][lang][:type],
+          :style => [key]
+        }
+      else
+        hsh[lang][:style] << key
+      end
+    end
+  end
 end
